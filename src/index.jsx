@@ -1,21 +1,28 @@
-import './style.css'
-import ReactDOM from 'react-dom/client'
-import { Canvas } from '@react-three/fiber'
-import Experience from './Experience.jsx'
+import "./style.css";
+import ReactDOM from "react-dom/client";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Html } from "@react-three/drei";
+import Experience from "./Experience.jsx";
+import { Leva } from "leva";
 
-const root = ReactDOM.createRoot(document.querySelector('#root'))
+const root = ReactDOM.createRoot(document.querySelector("#root"));
 
 root.render(
+  <>
+
+    <Leva />
     <Canvas
-        flat
-        camera={ {
-            fov: 45,
-            near: 0.1,
-            far: 50,
-            position: [ 1, 2, 6 ]
-        } }
+      flat
+      camera={{
+        fov: 45,
+        near: 0.1,
+        far: 50,
+        position: [1, 2, 6],
+      }}
     >
-        <color args={ [ '#030202' ] } attach="background" />
-        <Experience />
+      {/* <OrbitControls/> */}
+      {/* <color args={ [ '#030202' ] } attach="background" /> */}
+      <Experience />
     </Canvas>
-)
+  </>
+);
