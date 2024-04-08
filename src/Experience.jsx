@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { Perf } from "r3f-perf";
 import gsap from "gsap";
 import Menu from "./Menu";
+import planePositionArray from "./attributes/plane";
 
 const vertexShader = `
 uniform float uTime;
@@ -62,6 +63,7 @@ void main() {
 `;
 
 export default function Experience() {
+  console.log(planePositionArray, 1123456);
   const mesh = useRef();
   const geometry = useRef();
   const materialRef = useRef();
@@ -108,12 +110,10 @@ export default function Experience() {
     console.log(textRef.current.geometry.attributes.position.array);
     geometry.current.setAttribute(
       "aPosition",
-      new THREE.BufferAttribute(control.current.attributes.position.array, 3)
+      new THREE.BufferAttribute(planePositionArray, 3)
     );
 
     // textRef.current.geometry.attributes.position.array
-
-    console.log(control.current.attributes.position.array);
 
     const worldPosition = new THREE.Vector3();
     textRef.current.getWorldPosition(worldPosition);
@@ -174,16 +174,6 @@ export default function Experience() {
         />
       </points>
 
-      <points visible={false}>
-        <planeGeometry
-          rotateY={1.3}
-          visible={false}
-          ref={control}
-          attach="geometry"
-          args={[2.5, 2.5, 30, 30]}
-        />
-        <meshBasicMaterial />
-      </points>
       <Center color="red" top Center>
         <Text3D
           // size: 80,
