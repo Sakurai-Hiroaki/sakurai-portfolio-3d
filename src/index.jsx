@@ -17,7 +17,7 @@ root.render(
         fov: 45,
         near: 0.1,
         far: 50,
-        position: [1, 2, 6],
+        position: [0, 2, 10],
       }}
     >
       {/* <OrbitControls/> */}

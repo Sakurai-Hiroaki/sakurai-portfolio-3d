@@ -1,4 +1,4 @@
-import { Text, Text3D, Center, Html } from "@react-three/drei";
+import { Text, Text3D, Center, Html, useTexture , OrbitControls} from "@react-three/drei";
 import { useFrame, extend, useThree } from "@react-three/fiber";
 import { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
@@ -6,6 +6,7 @@ import { Perf } from "r3f-perf";
 import gsap from "gsap";
 import Menu from "./Menu";
 import planePositionArray from "./attributes/plane";
+import Logo from "./shaders/Logo";
 
 const vertexShader = `
 uniform float uTime;
@@ -70,11 +71,15 @@ export default function Experience() {
   const textRef = useRef();
   const torusRef = useRef();
   const control = useRef();
+  const iconRef = useRef();
   const [isHovered, setIsHovered] = useState(false);
   const [resolution, setResolution] = useState([
     window.innerWidth,
     window.innerHeight,
   ]);
+
+  const svgTexture = useTexture("/icons/javascript.svg");
+  console.log(svgTexture);
 
   useFrame(({ clock }) => {
     const elapsedTime = clock.getElapsedTime();
@@ -147,11 +152,12 @@ export default function Experience() {
 
   return (
     <>
+      <OrbitControls />
       <Html>
         <Menu />
       </Html>
 
-      <points ref={mesh}>
+      <points ref={mesh} visible={false}>
         <sphereGeometry ref={geometry} attach="geometry" args={[1, 30, 30]} />
         <shaderMaterial
           ref={materialRef}
@@ -173,8 +179,9 @@ export default function Experience() {
           ]}
         />
       </points>
+      <Logo />
 
-      <Center color="red" top Center>
+      <Center color="red" top Center visible={false}>
         <Text3D
           // size: 80,
           //  depth: 5,
