@@ -1,4 +1,11 @@
-import { Text, Text3D, Center, Html, useTexture , OrbitControls} from "@react-three/drei";
+import {
+  Text,
+  Text3D,
+  Center,
+  Html,
+  useTexture,
+  OrbitControls,
+} from "@react-three/drei";
 import { useFrame, extend, useThree } from "@react-three/fiber";
 import { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
@@ -6,7 +13,7 @@ import { Perf } from "r3f-perf";
 import gsap from "gsap";
 import Menu from "./Menu";
 import planePositionArray from "./attributes/plane";
-import Logo from "./shaders/Logo";
+import Logo from "./Logo";
 
 const vertexShader = `
 uniform float uTime;
@@ -112,7 +119,6 @@ export default function Experience() {
     // }
     // console.log(control.current)
 
-    console.log(textRef.current.geometry.attributes.position.array);
     geometry.current.setAttribute(
       "aPosition",
       new THREE.BufferAttribute(planePositionArray, 3)
@@ -152,13 +158,8 @@ export default function Experience() {
 
   return (
     <>
-      <OrbitControls />
-      <Html>
-        <Menu />
-      </Html>
-
       <points ref={mesh} visible={false}>
-        <sphereGeometry ref={geometry} attach="geometry" args={[1, 30, 30]} />
+        <sphereGeometry ref={geometry} attach="geometry" args={[1.5, 30, 30]} />
         <shaderMaterial
           ref={materialRef}
           args={[

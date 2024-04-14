@@ -12,8 +12,12 @@
     "vite": "^4.5.0"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@react-three/drei": "^9.88.7",
     "@react-three/fiber": "^8.15.8",
+    "framer-motion": "^11.0.28",
     "gsap": "^3.12.5",
     "leva": "^0.9.35",
     "r3f-perf": "^7.1.2",
