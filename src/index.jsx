@@ -7,7 +7,6 @@ import { Suspense, useState, useRef } from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import HtmlContent from "./HtmlContent.jsx";
 import { MenuProvider } from "./context/MenuContext.jsx";
-import { useSwipeable } from "react-swipeable";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 

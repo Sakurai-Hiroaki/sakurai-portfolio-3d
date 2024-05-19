@@ -76,8 +76,6 @@ const HtmlContent = () => {
         zIndex={100}
         direction={{ base: "column", md: "row" }}
       ></Stack>
-      {/* <Otin /> */}
-      {/* <Unti /> */}
     </>
   );
 };
