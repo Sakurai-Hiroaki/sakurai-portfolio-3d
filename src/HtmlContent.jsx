@@ -1,9 +1,4 @@
 import {
-  Tabs,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
   Flex,
   Heading,
   Stack,
@@ -17,9 +12,6 @@ import { useMenu, useMenuDispatch } from "./context/MenuContext";
 
 const HtmlContent = () => {
   const profileHeadingRef = useRef();
-
-  const menus = useMenu();
-  const reducer = useMenuDispatch();
 
   useEffect(() => {
     const profileHeading = profileHeadingRef.current;

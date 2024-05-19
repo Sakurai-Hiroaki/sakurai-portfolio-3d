@@ -1,5 +1,4 @@
 import "./style.css";
-import ReactDOM from "react-dom/client";
 import { Canvas } from "@react-three/fiber";
 import { Preload } from "@react-three/drei";
 import Experience from "./Experience.jsx";
@@ -9,33 +8,16 @@ import Contact from "./Contact.jsx";
 import Header from "./Header";
 import { Suspense, useState, useRef, useEffect } from "react";
 import { Route, Routes, Link } from "react-router-dom";
-import {
-  ChakraProvider,
-  extendTheme,
-  Stack,
-  SimpleGrid,
-  GridItem,
-  Center,
-  VisuallyHidden,
-  Input,
-  Icon,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { extendTheme, Stack, Center } from "@chakra-ui/react";
 import HtmlContent from "./HtmlContent.jsx";
-import { MenuProvider } from "./context/MenuContext.jsx";
 import { useSwipeable } from "react-swipeable";
 import gsap from "gsap";
 import { useMenu, useMenuDispatch } from "./context/MenuContext";
 import * as THREE from "three";
 import planePosition32Array from "./attributes/plane.js";
 import {
-  chakra,
-  Flex,
-  Box,
   Button,
   Modal,
-  ModalOverlay,
   ModalContent,
   ModalHeader,
   ModalFooter,
@@ -177,7 +159,7 @@ const App = () => {
         </ModalContent>
       </Modal>
 
-      <Header />
+      {/* <Header /> */}
 
       {/* <Box px={2} color="white" position="fixed" top={0}>
         <Container maxW="container.lg">
