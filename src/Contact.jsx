@@ -1,4 +1,5 @@
 import { Box, Text, Button, useToast, Flex, chakra } from "@chakra-ui/react";
+import { useSwipeable } from "react-swipeable";
 const Contact = () => {
   const toast = useToast();
   const handleCopyEmail = () => {
@@ -11,9 +12,21 @@ const Contact = () => {
     });
   };
 
+  const handlers = useSwipeable({
+    onSwiped: (eventData) => alert("Swiped!", eventData),
+    onSwipedLeft: () => alert("Swiped left!"),
+    onSwipedRight: () => alert("Swiped right!"),
+    onSwipedUp: () => alert("Swiped up!"),
+    onSwipedDown: () => alert("Swiped down!"),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true, // マウスイベントもトラックする
+  });
+
   return (
     <>
       <Flex
+        {...handlers}
+        position={"absolute"}
         bg="#edf3f8"
         _dark={{
           bg: "#3e3e3e",

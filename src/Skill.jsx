@@ -3,7 +3,6 @@ import { Box, Flex, SimpleGrid, chakra, Icon, Image } from "@chakra-ui/react";
 
 const Feature = (props) => {
 
-
 const skills = [
   {
     "name": "JavaScript",

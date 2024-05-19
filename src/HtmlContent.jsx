@@ -1,14 +1,12 @@
-import {
-  Flex,
-  Heading,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap/gsap-core";
-import Otin from "./Title";
+import Title from "./Title";
 
 import { useMenu, useMenuDispatch } from "./context/MenuContext";
+import DetailModal from "./detailModal";
+
+
 
 const HtmlContent = () => {
   const profileHeadingRef = useRef();
@@ -58,16 +56,9 @@ const HtmlContent = () => {
           </Stack>
         </Flex>
       </Stack>
-      <Otin />
+      <Title />
+      <DetailModal />
 
-      <Stack
-        position="absolute"
-        top={0}
-        w={"100%"}
-        minH={"100vh"}
-        zIndex={100}
-        direction={{ base: "column", md: "row" }}
-      ></Stack>
     </>
   );
 };

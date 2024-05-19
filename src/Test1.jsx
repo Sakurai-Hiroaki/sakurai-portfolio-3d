@@ -2,17 +2,7 @@ import {
     chakra,
     Flex,
     Box,
-    Link,
-    Button,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    useDisclosure,
-    Image,
+
   } from "@chakra-ui/react";
 
 
