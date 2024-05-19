@@ -9,11 +9,12 @@ import HtmlContent from "./HtmlContent.jsx";
 import { MenuProvider } from "./context/MenuContext.jsx";
 import { useSwipeable } from "react-swipeable";
 import App from "./App.jsx";
+import { BrowserRouter } from "react-router-dom";
 
 const theme = extendTheme({
   fonts: {
-    body: "Silkscreen DotGothic16 sans-serif",
-    heading: "Silkscreen DotGothic16 sans-serif",
+    body: "Silkscreen sans-serif",
+    heading: "Silkscreen sans-serif",
   },
 });
 
@@ -62,14 +63,14 @@ const root = ReactDOM.createRoot(document.querySelector("#root"));
 
 root.render(
   <>
-    <MenuProvider>
-      <ChakraProvider theme={theme}>
-        {/* <Leva /> */}
-
-        <Suspense fallback={null}>
-          <App />
-        </Suspense>
-      </ChakraProvider>
-    </MenuProvider>
+    <Suspense fallback={null}>
+      <BrowserRouter>
+        <MenuProvider>
+          <ChakraProvider theme={theme}>
+            <App />
+          </ChakraProvider>
+        </MenuProvider>
+      </BrowserRouter>
+    </Suspense>
   </>
 );
