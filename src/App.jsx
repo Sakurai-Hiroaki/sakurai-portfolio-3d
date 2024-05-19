@@ -3,7 +3,12 @@ import ReactDOM from "react-dom/client";
 import { Canvas } from "@react-three/fiber";
 import { Preload } from "@react-three/drei";
 import Experience from "./Experience.jsx";
+import Test1 from "./Test1.jsx";
+import Contact from "./Contact.jsx";
+// import Skill from "./Skill.jsx";
+import Header from "./Header";
 import { Suspense, useState, useRef, useEffect } from "react";
+import { Route, Routes , Link} from 'react-router-dom';
 import {
   ChakraProvider,
   extendTheme,
@@ -28,7 +33,6 @@ import {
   chakra,
   Flex,
   Box,
-  Link,
   Button,
   Modal,
   ModalOverlay,
@@ -47,32 +51,7 @@ const theme = extendTheme({
   },
 });
 
-const Feature = (props) => {
-  return (
-    <Box>
-      <chakra.h3
-        mb={3}
-        fontSize="lg"
-        lineHeight="shorter"
-        fontWeight="bold"
-        _light={{
-          color: "gray.900",
-        }}
-      >
-        {props.title}
-      </chakra.h3>
-      <chakra.p
-        lineHeight="tall"
-        color="gray.600"
-        _dark={{
-          color: "gray.400",
-        }}
-      >
-        {props.children}
-      </chakra.p>
-    </Box>
-  );
-};
+
 
 const App = () => {
   const childRef = useRef();
@@ -82,6 +61,7 @@ const App = () => {
 
   let isAnimation = false;
   let currentIndex = 0;
+  const stackRef = useRef();
 
   const updatePosition = () => {
     if (isAnimation) return;
@@ -112,6 +92,21 @@ const App = () => {
     });
     reducer({ type: "REORDER_MENU" });
   };
+
+  useEffect(() => {
+    const handleWheelEvent = (event) => {
+      const delta = event.deltaY || event.detail || event.wheelDelta;
+      const direction = delta > 0 ? 1 : -1;
+
+      updatePosition();
+    };
+
+    stackRef.current.addEventListener("wheel", handleWheelEvent);
+
+    return () => {
+      stackRef.current.removeEventListener("wheel", handleWheelEvent);
+    };
+  }, []);
 
   const handlers = useSwipeable({
     onSwipedUp: () => {
@@ -144,6 +139,7 @@ const App = () => {
       <HtmlContent />
       <Stack
         {...handlers}
+        ref={stackRef}
         position="absolute"
         top={0}
         w={"100%"}
@@ -163,183 +159,50 @@ const App = () => {
 
           <Center>
             <ModalBody maxW={{ base: "100vw", md: "80vw" }} color={"#fff"}>
-              {/* レスポンシブに対応したコンテンツをここに追加 */}
-              <Text>タイトル構成</Text>
 
-              <Flex
-                bg="#edf3f8"
-                _dark={{
-                  bg: "#3e3e3e",
-                }}
-                p={10}
-                w="full"
-                alignItems="center"
-                justifyContent="center"
-              >
-                <Box
-                  bg="white"
-                  _dark={{
-                    bg: "gray.800",
-                  }}
-                  mx={{
-                    lg: 8,
-                  }}
-                  display={{
-                    lg: "flex",
-                  }}
-                  maxW={{
-                    lg: "5xl",
-                  }}
-                  shadow={{
-                    lg: "lg",
-                  }}
-                  rounded={{
-                    lg: "lg",
-                  }}
-                >
-                  <Box
-                    w={{
-                      lg: "40%",
-                    }}
-                  >
-                    <Box
-                      h={{
-                        base: 64,
-                        lg: "full",
-                      }}
-                      rounded={{
-                        lg: "lg",
-                      }}
-                      bgSize="cover"
-                      style={{
-                        backgroundImage:
-                          "url('https://images.unsplash.com/photo-1593642532400-2682810df593?ixlib=rb-1.2.1&ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=750&q=80')",
-                      }}
-                    ></Box>
-                  </Box>
 
-                  <Box
-                    py={12}
-                    px={6}
-                    maxW={{
-                      base: "xl",
-                      lg: "5xl",
-                    }}
-                    w={{
-                      lg: "60%",
-                    }}
-                  >
-                    <chakra.h2
-                      fontSize={{
-                        base: "2xl",
-                        md: "3xl",
-                      }}
-                      color="gray.800"
-                      _dark={{
-                        color: "white",
-                      }}
-                      fontWeight="bold"
-                    >
-                      PROFILE
-                    </chakra.h2>
-                    <chakra.p
-                      mt={4}
-                      color="gray.600"
-                      _dark={{
-                        color: "gray.400",
-                      }}
-                    >
-                      初めまして。フロントエンドエンジニア歴4年の櫻井大晃と申します。
-                      このポートフォリオでは、今まで使用してきた技術や経歴、仕事をする中で大切にしていることをまとめたサイトになります。
-                    </chakra.p>
-                  </Box>
-                </Box>
-              </Flex>
 
-              <Flex
-                bg="#edf3f8"
-                _dark={{
-                  bg: "#3e3e3e",
-                }}
-                p={20}
-                w="auto"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <SimpleGrid
-                  columns={{
-                    base: 1,
-                    md: 2,
-                    lg: 3,
-                  }}
-                  spacing={20}
-                  px={{
-                    base: 4,
-                    lg: 16,
-                    xl: 24,
-                  }}
-                  py={20}
-                  mx="auto"
-                  bg="white"
-                  _dark={{
-                    bg: "gray.800",
-                  }}
-                  shadow="xl"
-                >
-                  <Feature title="継続力"></Feature>
+    <Routes>
+      <Route path='/profile' element={<Test1 />} />
+      <Route path="/contact" element={<Contact />} />
+      {/* <Route path="/skill" element={<Skill />} /> */}
+    </Routes>
 
-                  <Feature title="英語力">
-                    現状は英語のドキュメントや動画を問題なく理解できます。
-                    <br />
-                    現在は今年中にTOEICスコア900を目指しています。(現在は815)
-                    <br />
-                    ゆくゆくは英語対応のアプリケーションを開発できるようになりたいと考えております。
-                  </Feature>
 
-                  <Feature title="安定">
-                    仕事をする上で技術力を上げていくのはもちろん大切なことですが、周り
-                  </Feature>
-                </SimpleGrid>
-              </Flex>
 
-              <Box
-                py={12}
-                maxW={{
-                  base: "xl",
-                  lg: "5xl",
-                }}
-                w={{
-                  lg: "50%",
-                }}
-              >
-                <chakra.p
-                  mt={4}
-                  color="gray.600"
-                  _dark={{
-                    color: "gray.400",
-                  }}
-                >
-                  生年月日: 1993年9月24日
-                </chakra.p>
-                <chakra.p
-                  mt={4}
-                  color="gray.600"
-                  _dark={{
-                    color: "gray.400",
-                  }}
-                >
-                  所在地: 東京都
-                </chakra.p>
-                <chakra.p
-                  mt={4}
-                  color="gray.600"
-                  _dark={{
-                    color: "gray.400",
-                  }}
-                >
-                  メールアドレス: kaityuu_21@yahoo.co.jp
-                </chakra.p>
-              </Box>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </ModalBody>
           </Center>
 
@@ -347,10 +210,40 @@ const App = () => {
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
+          
+             <Link to="/test">
+             <Button  variant="ghost">Secondary Action</Button>
+             </Link> 
           </ModalFooter>
         </ModalContent>
       </Modal>
+
+
+
+
+
+
+
+
+
+
+
+<Header />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       {/* <Box px={2} color="white" position="fixed" top={0}>
         <Container maxW="container.lg">

@@ -1,9 +1,15 @@
 import { createContext, useContext, useReducer } from "react";
-
+import { useNavigate } from 'react-router-dom';
 const MenuContext = createContext();
 const MenuDispatchContext = createContext();
 
 const MenuProvider = ({ children }) => {
+
+  const navigate = useNavigate();
+
+
+
+
   const menus = [
     { name: "profile", isActive: true },
     { name: "contact", isActive: false },
@@ -11,11 +17,12 @@ const MenuProvider = ({ children }) => {
     { name: "works", isActive: false },
   ];
 
-  const [state, dispatch] = useReducer((prev, { type, step }) => {
+  const [state, dispatch] = useReducer((prev, { type }) => {
     if (type === "REORDER_MENU") {
       const updatedMenus = [...prev];
       const lastMenu = updatedMenus.pop();
       updatedMenus.unshift(lastMenu);
+      navigate(updatedMenus[0].name);
       return updatedMenus;
     }
     return prev;

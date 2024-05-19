@@ -46,49 +46,49 @@ const Experience = forwardRef((props, ref) => {
   let isAnimation = false;
   let currentIndex = 0;
 
-  const updatePosition = () => {
-    mesh.current.geometry.setAttribute(
-      "aPosition",
-      new THREE.BufferAttribute(particlesArray[currentIndex], 3)
-    );
+  // const updatePosition = () => {
+  //   mesh.current.geometry.setAttribute(
+  //     "aPosition",
+  //     new THREE.BufferAttribute(particlesArray[currentIndex], 3)
+  //   );
 
-    gsap.to(mesh.current.material.uniforms.uSpeed, {
-      value: 1,
-      duration: 1.3,
-      onComplete: () => {
-        mesh.current.geometry.setAttribute(
-          "position",
-          new THREE.BufferAttribute(particlesArray[currentIndex], 3)
-        );
-        mesh.current.material.uniforms.uSpeed.value = 0;
-        isAnimation = false;
-      },
-      ease: "power1.in",
-    });
-  };
+  //   gsap.to(mesh.current.material.uniforms.uSpeed, {
+  //     value: 1,
+  //     duration: 1.3,
+  //     onComplete: () => {
+  //       mesh.current.geometry.setAttribute(
+  //         "position",
+  //         new THREE.BufferAttribute(particlesArray[currentIndex], 3)
+  //       );
+  //       mesh.current.material.uniforms.uSpeed.value = 0;
+  //       isAnimation = false;
+  //     },
+  //     ease: "power1.in",
+  //   });
+  // };
 
-  const handleWheel = (event, direction) => {
-    if (isAnimation) return;
-    isAnimation = true;
-    currentIndex =
-      (currentIndex + direction + particlesArray.length) %
-      particlesArray.length;
-    updatePosition();
-  };
+  // const handleWheel = (event, direction) => {
+  //   if (isAnimation) return;
+  //   isAnimation = true;
+  //   currentIndex =
+  //     (currentIndex + direction + particlesArray.length) %
+  //     particlesArray.length;
+  //   updatePosition();
+  // };
 
-  useEffect(() => {
-    const handleWheelEvent = (event) => {
-      const delta = event.deltaY || event.detail || event.wheelDelta;
-      const direction = delta > 0 ? 1 : -1;
-      handleWheel(event, direction);
-    };
+  // useEffect(() => {
+  //   const handleWheelEvent = (event) => {
+  //     const delta = event.deltaY || event.detail || event.wheelDelta;
+  //     const direction = delta > 0 ? 1 : -1;
+  //     handleWheel(event, direction);
+  //   };
 
-    window.addEventListener("wheel", handleWheelEvent);
+  //   window.addEventListener("wheel", handleWheelEvent);
 
-    return () => {
-      window.removeEventListener("wheel", handleWheelEvent);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("wheel", handleWheelEvent);
+  //   };
+  // }, []);
 
   useEffect(() => {
     const spherePosition = mesh.current.geometry.attributes.position.array;
