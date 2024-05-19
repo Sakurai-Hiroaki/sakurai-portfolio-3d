@@ -8,7 +8,7 @@ import Contact from "./Contact.jsx";
 // import Skill from "./Skill.jsx";
 import Header from "./Header";
 import { Suspense, useState, useRef, useEffect } from "react";
-import { Route, Routes , Link} from 'react-router-dom';
+import { Route, Routes, Link } from "react-router-dom";
 import {
   ChakraProvider,
   extendTheme,
@@ -50,8 +50,6 @@ const theme = extendTheme({
     heading: "Silkscreen DotGothic16 sans-serif",
   },
 });
-
-
 
 const App = () => {
   const childRef = useRef();
@@ -159,50 +157,11 @@ const App = () => {
 
           <Center>
             <ModalBody maxW={{ base: "100vw", md: "80vw" }} color={"#fff"}>
-
-
-
-    <Routes>
-      <Route path='/profile' element={<Test1 />} />
-      <Route path="/contact" element={<Contact />} />
-      {/* <Route path="/skill" element={<Skill />} /> */}
-    </Routes>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+              <Routes>
+                <Route path="/profile" element={<Test1 />} />
+                <Route path="/contact" element={<Contact />} />
+                {/* <Route path="/skill" element={<Skill />} /> */}
+              </Routes>
             </ModalBody>
           </Center>
 
@@ -210,40 +169,15 @@ const App = () => {
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-          
-             <Link to="/test">
-             <Button  variant="ghost">Secondary Action</Button>
-             </Link> 
+
+            <Link to="/test">
+              <Button variant="ghost">Secondary Action</Button>
+            </Link>
           </ModalFooter>
         </ModalContent>
       </Modal>
 
-
-
-
-
-
-
-
-
-
-
-<Header />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <Header />
 
       {/* <Box px={2} color="white" position="fixed" top={0}>
         <Container maxW="container.lg">
