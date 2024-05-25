@@ -1,89 +1,64 @@
-import { Box, Text, Button, useToast, Flex, chakra } from "@chakra-ui/react";
-import { useSwipeable } from "react-swipeable";
+import {
+  Box,
+  Text,
+  Button,
+  useToast,
+  Flex,
+  chakra,
+  Center,
+} from '@chakra-ui/react';
 const Contact = () => {
   const toast = useToast();
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("kaityuu_21@yahoo.co.jp");
+    navigator.clipboard.writeText('kaityuu_21@yahoo.co.jp');
     toast({
-      title: "メールアドレスをコピーしました",
-      status: "info",
+      title: 'メールアドレスをコピーしました',
+      status: 'info',
       duration: 3000,
       isClosable: true,
     });
   };
 
-  const handlers = useSwipeable({
-    onSwiped: (eventData) => alert("Swiped!", eventData),
-    onSwipedLeft: () => alert("Swiped left!"),
-    onSwipedRight: () => alert("Swiped right!"),
-    onSwipedUp: () => alert("Swiped up!"),
-    onSwipedDown: () => alert("Swiped down!"),
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true, // マウスイベントもトラックする
-  });
-
   return (
     <>
-      <Flex
-        {...handlers}
-        position={"absolute"}
-        bg="#edf3f8"
-        _dark={{
-          bg: "#3e3e3e",
+      <chakra.p
+        mt={8}
+        fontSize={{
+          base: '1xl',
+          sm: '2xl',
         }}
-        p={5}
-        w="auto"
-        justifyContent="center"
-        alignItems="center"
+        lineHeight="8"
+        fontWeight="bold"
+        fontFamily="Silkscreen"
+        letterSpacing={12}
+        textAlign="center"
+        marginBottom={8}
       >
-        <Box
-          px={8}
-          py={20}
-          mx="auto"
-          bg="white"
-          _dark={{
-            bg: "gray.800",
-          }}
-          shadow="xl"
-        >
-          <Box
-            textAlign={{
-              lg: "center",
-            }}
-          >
-            <chakra.p
-              mt={2}
-              fontSize={{
-                base: "3xl",
-                sm: "4xl",
-              }}
-              lineHeight="8"
-              fontWeight="extrabold"
-              letterSpacing="tight"
-              _light={{
-                color: "gray.900",
-              }}
-            >
-              CONTACT
-            </chakra.p>
-            <chakra.p
-              mt={4}
-              maxW="2xl"
-              fontSize="xl"
-              mx={{
-                lg: "auto",
-              }}
-              color="gray.500"
-              _dark={{
-                color: "gray.400",
-              }}
-            >
-              ご連絡はx(旧twitter)もしくはkaityuu_21@yahoo.co.jpまでお願いいたします
-            </chakra.p>
-            <Button onClick={handleCopyEmail}>コピー</Button>
-          </Box>
-        </Box>
-      </Flex>
+        CONTACT
+      </chakra.p>
+
+      <chakra.p mt={4} mb={4} textAlign="center" fontSize="md">
+        ご連絡はx(旧twitter)もしくはkaityuu_21@yahoo.co.jpまでお願いいたします。
+      </chakra.p>
+
+      <chakra.p mt={4} mb={4} textAlign="center" fontSize="md">
+        メールアドレス: kaityuu_21@yahoo.co.jp
+      </chakra.p>
+      <chakra.p mt={4} mb={8} textAlign="center" fontSize="md">
+        xアカウント:
+        <chakra.a href="https://x.com/saku_front" target="_blank">
+          saku_front
+        </chakra.a>
+      </chakra.p>
+      <Button
+        mb={8}
+        textAlign={'center'}
+        mx={'auto'}
+        display="block"
+        onClick={handleCopyEmail}
+      >
+        メールアドレスをコピー
+      </Button>
     </>
   );
 };

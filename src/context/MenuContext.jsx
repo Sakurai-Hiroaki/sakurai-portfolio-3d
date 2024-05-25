@@ -1,14 +1,8 @@
 import { createContext, useContext, useReducer } from "react";
-import { useNavigate } from 'react-router-dom';
 const MenuContext = createContext();
 const MenuDispatchContext = createContext();
 
 const MenuProvider = ({ children }) => {
-
-  const navigate = useNavigate();
-
-
-
 
   const menus = [
     { name: "profile", isActive: true },
@@ -22,7 +16,6 @@ const MenuProvider = ({ children }) => {
       const updatedMenus = [...prev];
       const lastMenu = updatedMenus.pop();
       updatedMenus.unshift(lastMenu);
-      navigate(updatedMenus[0].name);
       return updatedMenus;
     }
     return prev;

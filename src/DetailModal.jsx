@@ -6,49 +6,56 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
-  chakra,
-  useBreakpointValue,
+  Box,
   Center,
-} from "@chakra-ui/react";
-import { Route, Routes, Link } from "react-router-dom";
-import Test1 from "./Test1";
-import Contact from "./Contact";
+} from '@chakra-ui/react';
+import { Route, Routes } from 'react-router-dom';
+import Profile from './Test1';
+import Skill from './Skill';
+import Works from './Works';
+import Contact from './Contact';
 
-
-const DetailModal = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
+const DetailModal = ({ isOpen, onClose }) => {
   return (
     <>
-      <Button position={"absolute"} bottom={10} zIndex={102} onClick={onOpen}>
-        Open Modal
-      </Button>
-
-      <Modal size={"full"} isOpen={isOpen} onClose={onClose} opacity={0.85}>
+      <Modal size={'full'} isOpen={isOpen} onClose={onClose} opacity={0.85}>
         <ModalContent bg="#191919">
-          <ModalHeader color="#fff">PROFILE</ModalHeader>
-          <ModalCloseButton />
+          <ModalHeader letterSpacing={2} fontFamily={'SilkScreen'} color="#fff">
+            portfolio
+          </ModalHeader>
+          <ModalCloseButton color={'white'} />
 
           <Center>
-            <ModalBody maxW={{ base: "100vw", md: "80vw" }} color={"#fff"}>
-              <Routes>
-                <Route path="/profile" element={<Test1 />} />
-                <Route path="/contact" element={<Contact />} />
-                {/* <Route path="/skill" element={<Skill />} /> */}
-              </Routes>
+            <ModalBody maxW={{ base: '100vw', md: '80vw' }} color={'#fff'}>
+              <Box
+                textAlign={'center'}
+                minH={500}
+                border={'1px solid #fff'}
+                p={4}
+              >
+                <Center>
+                  <Box maxW={'950px'} w={'950px'} fontFamily="Noto Sans JP" >
+                    <Routes>
+                      <Route path="/profile" element={<Profile />} />
+                      <Route path="/contact" element={<Contact />} />
+                      <Route path="/skill" element={<Skill />} />
+                      <Route path="/works" element={<Works />} />
+                    </Routes>
+                  </Box>
+                </Center>
+              </Box>
+
+              <Box textAlign={'right'} pt={4} mb={4}>
+                <Button
+                  colorScheme="teal.500"
+                  onClick={onClose}
+                  bg={'teal.500'}
+                >
+                  閉じる
+                </Button>
+              </Box>
             </ModalBody>
           </Center>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-
-            <Link to="/test">
-              <Button variant="ghost">Secondary Action</Button>
-            </Link>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
