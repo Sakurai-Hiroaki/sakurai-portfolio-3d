@@ -1,4 +1,4 @@
-import { useFrame } from '@react-three/fiber';
+import { useFrame } from "@react-three/fiber";
 import {
   useEffect,
   useState,
@@ -6,12 +6,10 @@ import {
   forwardRef,
   useImperativeHandle,
   memo,
-} from 'react';
-import vertexShader from './shaders/vertexShader.glsl';
-import fragmentShader from './shaders/fragmentShader.glsl';
-import * as THREE from 'three';
-import planePositionFloat32Array from './attributes/plane';
-
+} from "react";
+import vertexShader from "./shaders/vertexShader.glsl";
+import fragmentShader from "./shaders/fragmentShader.glsl";
+import * as THREE from "three";
 
 const Experience = memo(
   forwardRef((props, ref) => {
@@ -26,9 +24,9 @@ const Experience = memo(
       const handleResize = () => {
         setResolution([window.innerWidth, window.innerHeight]);
       };
-      window.addEventListener('resize', handleResize);
-      return (touchstart) => {
-        window.removeEventListener('resize', handleResize);
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
       };
     }, []);
 
@@ -53,7 +51,6 @@ const Experience = memo(
           <sphereGeometry
             attach="geometry"
             args={[1.75, 32, 32, 0, Math.PI * 2 - 0.2]}
-            position={planePositionFloat32Array[3]}
           />
 
           <shaderMaterial
@@ -62,7 +59,6 @@ const Experience = memo(
                 uniforms: {
                   uSize: { value: 0.026 },
                   uTime: { value: 0 },
-                  position: { attributes: planePositionFloat32Array[4]},
                   uResolution: { value: new THREE.Vector2(...resolution) },
                   uSpeed: { value: 0 },
                 },

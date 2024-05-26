@@ -10,10 +10,10 @@ import {
   Center,
 } from '@chakra-ui/react';
 import { Route, Routes } from 'react-router-dom';
-import Profile from './Test1';
-import Skill from './Skill';
-import Works from './Works';
-import Contact from './Contact';
+import Profile from './modalContent/Profile';
+import Skill from './modalContent/Skill';
+import Works from './modalContent/Works';
+import Contact from './modalContent/Contact';
 
 const DetailModal = ({ isOpen, onClose }) => {
   return (
@@ -34,8 +34,9 @@ const DetailModal = ({ isOpen, onClose }) => {
                 p={4}
               >
                 <Center>
-                  <Box maxW={'950px'} w={'950px'} fontFamily="Noto Sans JP" >
+                  <Box maxW={'950px'} w={'950px'} fontFamily="Noto Sans JP">
                     <Routes>
+                      <Route path="/" element={<Profile />} />
                       <Route path="/profile" element={<Profile />} />
                       <Route path="/contact" element={<Contact />} />
                       <Route path="/skill" element={<Skill />} />

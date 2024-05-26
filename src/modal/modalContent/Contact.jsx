@@ -37,21 +37,24 @@ const Contact = () => {
         CONTACT
       </chakra.p>
 
-      <chakra.p mt={4} mb={4} textAlign="center" fontSize="md">
+      <chakra.p mt={4} mb={8} textAlign="center" fontSize="md">
         ご連絡はx(旧twitter)もしくはkaityuu_21@yahoo.co.jpまでお願いいたします。
       </chakra.p>
 
-      <chakra.p mt={4} mb={4} textAlign="center" fontSize="md">
-        メールアドレス: kaityuu_21@yahoo.co.jp
+      <chakra.p
+        mt={4}
+        mb={2}
+        textAlign="center"
+        fontSize="md"
+        fontWeight="bold"
+      >
+        メールアドレス
       </chakra.p>
-      <chakra.p mt={4} mb={8} textAlign="center" fontSize="md">
-        xアカウント:
-        <chakra.a href="https://x.com/saku_front" target="_blank">
-          saku_front
-        </chakra.a>
+      <chakra.p mt={4} mb={4} textAlign="center" fontSize="md">
+        kaityuu_21@yahoo.co.jp
       </chakra.p>
       <Button
-        mb={8}
+        mb={16}
         textAlign={'center'}
         mx={'auto'}
         display="block"
@@ -59,6 +62,21 @@ const Contact = () => {
       >
         メールアドレスをコピー
       </Button>
+
+      <chakra.p
+        mt={4}
+        mb={4}
+        textAlign="center"
+        fontSize="md"
+        fontWeight="bold"
+      >
+        xアカウント
+      </chakra.p>
+      <chakra.p mt={4} mb={8} textAlign="center" fontSize="md">
+        <chakra.a href="https://x.com/saku_front" target="_blank">
+          saku_front
+        </chakra.a>
+      </chakra.p>
     </>
   );
 };

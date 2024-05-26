@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx'; // あなたのアプリケーションのメインコンポーネント
+import App from './App.jsx';
 import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider, Box} from '@chakra-ui/react';
 import { MenuProvider } from './context/MenuContext.jsx';

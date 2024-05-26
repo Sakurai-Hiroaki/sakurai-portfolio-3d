@@ -6,7 +6,7 @@ import {
   useDisclosure,
   VStack,
   HStack,
-  Link,
+  Link as ChakraLink,
   Drawer,
   DrawerBody,
   DrawerOverlay,
@@ -15,7 +15,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const Header = ({ updatePosition }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -58,15 +58,15 @@ const Header = ({ updatePosition }) => {
           display={{ base: 'none', md: 'flex' }}
         >
           {['profile', 'skill', 'works', 'contact'].map((item) => (
-            <Link
-              as={RouterLink}
+            <ChakraLink
+              as={NavLink}
               to={`/${item}`}
               color={getLinkColor(`/${item}`)}
               onClick={() => handleLinkClick(item)}
               key={item.toUpperCase()}
             >
               {item.toUpperCase()}
-            </Link>
+            </ChakraLink>
           ))}
         </HStack>
       </Flex>
@@ -74,18 +74,19 @@ const Header = ({ updatePosition }) => {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerBody bg={"#030303"}>
+            <DrawerBody bg={'#030303'}>
               <VStack spacing={4} mt={10}>
                 {['profile', 'skill', 'works', 'contact'].map((item) => (
-                  <Link
-                    as={RouterLink}
+                  <ChakraLink
+                    fontFamily="Silkscreen"
+                    as={NavLink}
                     to={`/${item}`}
                     onClick={() => handleLinkClick(item)}
                     color={getLinkColor(`/${item}`)}
                     key={item.toUpperCase()}
                   >
                     {item.toUpperCase()}
-                  </Link>
+                  </ChakraLink>
                 ))}
               </VStack>
             </DrawerBody>

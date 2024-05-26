@@ -21,6 +21,7 @@ const Feature = ({ data }) => (
     <chakra.p fontSize="sm">{data.description}</chakra.p>
   </Box>
 );
+
 const Skill = () => {
   const skillsData = [
     {

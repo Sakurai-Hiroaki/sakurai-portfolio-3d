@@ -2,7 +2,7 @@ import { Flex, Heading, Stack, Text } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap/gsap-core';
 import Title from './Title';
-import DetailModal from './DetailModal';
+import DetailModal from './modal/ModalLayout';
 import SiteName from './SiteName';
 
 const HtmlContent = () => {

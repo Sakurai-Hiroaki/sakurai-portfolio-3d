@@ -14,7 +14,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-const Test1 = () => {
+const Profile = () => {
   return (
     <>
       <chakra.p
@@ -77,7 +77,6 @@ const Test1 = () => {
           />
         </Box>
       </Flex>
-
       <Box mb={16}>
         <Box mb={4}>
           <Text fontSize="2xl" fontWeight="bold">
@@ -147,26 +146,38 @@ const Test1 = () => {
           </Box>
         </Flex>
       </Box>
-
       <Box mb={4}>
         <Text fontSize="2xl" fontWeight="bold">
           その他
         </Text>
       </Box>
+      <Box mb={16}>
+        <hr />
+        <Text mt={2} textAlign={'justify'} lineHeight={8} mb={2}>
+          名前：櫻井大晃 (さくらい ひろあき)
+        </Text>
+        <hr />
+        <Text mt={2} textAlign={'justify'} lineHeight={8} mb={2}>
+          生年月日：1993年9月24日
+        </Text>
+        <hr />
+        <Text mt={2} textAlign={'justify'} lineHeight={8} mb={2}>
+          年齢：30歳
+        </Text>
+        <hr />
 
-      <Text mt={2} textAlign={'justify'} lineHeight={8} mb={16}>
+        <Text mt={2} textAlign={'justify'} lineHeight={8} mb={2}>
+          所在地：東京都
+        </Text>
         <hr />
-        生年月日：1993年9月24日
+
+        <Text mt={2} textAlign={'justify'} lineHeight={8} mb={2}>
+          趣味：ギター・カメラ・筋トレ
+        </Text>
         <hr />
-        年齢：30歳
-        <hr />
-        所在地：東京都
-        <hr />
-        趣味：ギター・カメラ・筋トレ
-        <hr />
-      </Text>
+      </Box>
     </>
   );
 };
 
-export default Test1;
+export default Profile;

@@ -7,7 +7,6 @@ import { useLocation } from 'react-router-dom';
 
 const Title = ({ onOpenModal }) => {
   const location = useLocation().pathname.slice(1);
-
   const titleRef = useRef();
   const nameRef = useRef();
   const descriptionRef = useRef();
@@ -32,14 +31,15 @@ const Title = ({ onOpenModal }) => {
   }, []);
 
   useEffect(() => {
-    gsap.from(titleRef.current, {
-      opacity: 0,
-      y: -50,
-      duration: 0.7,
-      delay: 0.5,
-    });
+    if (location !== "") {
+      gsap.from(titleRef.current, {
+        opacity: 0,
+        y: -50,
+        duration: 0.7,
+        delay: 0.5,
+      });
+    }
   }, [location]);
-
 
   return (
     <VStack
@@ -60,7 +60,7 @@ const Title = ({ onOpenModal }) => {
         letterSpacing={20}
         paddingLeft={'20px'}
       >
-        <Text ref={nameRef}>{location || 'HOME'}</Text>
+        <Text ref={nameRef}>{location}</Text>
       </Heading>
 
       <Text
@@ -73,13 +73,13 @@ const Title = ({ onOpenModal }) => {
         click
       </Text>
 
-      <TriangleDownIcon
+      {/* <TriangleDownIcon
         position={'absolute'}
         w={6}
         h={6}
         bottom={-20}
         ref={scrollTextRef}
-      />
+      /> */}
     </VStack>
   );
 };

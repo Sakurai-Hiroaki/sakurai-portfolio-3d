@@ -41,26 +41,26 @@ const App = () => {
   const handlers = useSwipeable({
     onSwipedLeft: () => {
       console.log('Swiped Up');
-      alert('ue');
       // updatePosition();
     },
     onSwipedUp: () => {
       console.log('Swiped Up');
-      alert('ue');
       // updatePosition();
     },
 
     onSwipedDown: () => {
       console.log('Swiped Down');
-      alert('sita');
       // updatePosition();
     },
     preventScrollOnSwipe: true,
     trackMouse: true,
   });
 
+  useEffect(() => {
+    location.pathname === '/' && navigate('/profile');
+  }, [location]);
+
   const testFunction = () => {
-    alert(location.pathname.slice(1));
     const current = location.pathname.slice(1);
     console.log(menus.filter((menu) => menu.name === current));
   };
@@ -99,22 +99,19 @@ const App = () => {
       },
       ease: 'power1.in',
     });
-  
   };
 
   useEffect(() => {
-    location.pathname === '/' && navigate('/profile');
-  }, []);
-
-  useEffect(() => {
     const handleWheelEvent = (event) => {
-      // const delta = event.deltaY || event.detail || event.wheelDelta;
-      // const direction = delta > 0 ? 1 : -1;
-      // updatePosition();
+     const navi =  getNextMenuItem(location)
+      
+console.log(navi)
+
+      // updatePosition(location);
     };
-
-    stackRef.current.addEventListener('wheel', handleWheelEvent);
-
+  
+    stackRef.current.addEventListener('wheel', handleWheelEvent, { passive: true });
+  
     return () => {
       stackRef.current.removeEventListener('wheel', handleWheelEvent);
     };
