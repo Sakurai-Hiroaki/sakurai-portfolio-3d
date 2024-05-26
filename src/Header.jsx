@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Box,
   Flex,
@@ -5,74 +6,88 @@ import {
   useDisclosure,
   VStack,
   HStack,
-  Link,
+  Link as ChakraLink,
   Drawer,
   DrawerBody,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-} from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { Link as RouterLink } from "react-router-dom";
+  useColorModeValue,
+} from '@chakra-ui/react';
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { NavLink, useLocation } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ updatePosition }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const location = useLocation();
+  const activeColor = useColorModeValue('teal.500', 'teal.200');
+  const inactiveColor = useColorModeValue('gray.500', 'gray.200');
+
+  const getLinkColor = (path) =>
+    location.pathname === path ? activeColor : inactiveColor;
+
+  const handleLinkClick = (path) => {
+    onClose();
+    updatePosition(path);
+  };
 
   return (
-    <Box zIndex={10000000} color={"#fff"} position="absolute" top={0} width={"100%"}>
+    <Box
+      zIndex={1000}
+      color={'#fff'}
+      position="absolute"
+      top={0}
+      width={'100%'}
+    >
       <Flex
         as="nav"
-        bg="gray.800"
         color="white"
         padding={4}
-        justifyContent="center"
+        justifyContent={{ base: 'flex-end', md: 'center' }}
         alignItems="center"
       >
         <IconButton
-          display={{ base: "block", md: "none" }}
+          display={{ base: 'block', md: 'none' }}
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
           onClick={isOpen ? onClose : onOpen}
-          variant="outline"
           aria-label="Toggle Navigation"
         />
         <HStack
-          spacing={8}
+          spacing={20}
           alignItems="center"
-          display={{ base: "none", md: "flex" }}
+          display={{ base: 'none', md: 'flex' }}
         >
-          <Link as={RouterLink} to="/profile">
-            PROFILE
-          </Link>
-          <Link as={RouterLink} to="/skill">
-            SKILL
-          </Link>
-          <Link as={RouterLink} to="/works">
-            WORKS
-          </Link>
-          <Link as={RouterLink} to="/contact">
-            CONTACT
-          </Link>
+          {['profile', 'skill', 'works', 'contact'].map((item) => (
+            <ChakraLink
+              as={NavLink}
+              to={`/${item}`}
+              color={getLinkColor(`/${item}`)}
+              onClick={() => handleLinkClick(item)}
+              key={item.toUpperCase()}
+            >
+              {item.toUpperCase()}
+            </ChakraLink>
+          ))}
         </HStack>
       </Flex>
-
-      <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+      <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay>
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerBody>
+            <DrawerBody bg={'#030303'}>
               <VStack spacing={4} mt={10}>
-                <Link as={RouterLink} to="/profile" onClick={onClose}>
-                  PROFILE
-                </Link>
-                <Link as={RouterLink} to="/skill" onClick={onClose}>
-                  SKILL
-                </Link>
-                <Link as={RouterLink} to="/works" onClick={onClose}>
-                  WORKS
-                </Link>
-                <Link as={RouterLink} to="/contact" onClick={onClose}>
-                  CONTACT
-                </Link>
+                {['profile', 'skill', 'works', 'contact'].map((item) => (
+                  <ChakraLink
+                    fontFamily="Silkscreen"
+                    as={NavLink}
+                    to={`/${item}`}
+                    onClick={() => handleLinkClick(item)}
+                    color={getLinkColor(`/${item}`)}
+                    key={item.toUpperCase()}
+                  >
+                    {item.toUpperCase()}
+                  </ChakraLink>
+                ))}
               </VStack>
             </DrawerBody>
           </DrawerContent>

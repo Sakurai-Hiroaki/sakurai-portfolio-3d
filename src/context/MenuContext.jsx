@@ -1,31 +1,31 @@
-import { createContext, useContext, useReducer } from "react";
-import { useNavigate } from 'react-router-dom';
+import { createContext, useContext, useReducer } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import planePositionFloat32Array from '../attributes/plane';
+
 const MenuContext = createContext();
 const MenuDispatchContext = createContext();
 
 const MenuProvider = ({ children }) => {
 
-  const navigate = useNavigate();
-
-
-
+  const geometryPositions = planePositionFloat32Array;
 
   const menus = [
-    { name: "profile", isActive: true },
-    { name: "contact", isActive: false },
-    { name: "skill", isActive: false },
-    { name: "works", isActive: false },
+    { name: 'profile', geometry: geometryPositions[0] },
+    { name: 'skill', geometry: geometryPositions[1] },
+    { name: 'works', geometry: geometryPositions[2] },
+    { name: 'contact', geometry: geometryPositions[3] },
   ];
 
   const [state, dispatch] = useReducer((prev, { type }) => {
-    if (type === "REORDER_MENU") {
-      const updatedMenus = [...prev];
-      const lastMenu = updatedMenus.pop();
-      updatedMenus.unshift(lastMenu);
-      navigate(updatedMenus[0].name);
+    if (type === 'REORDER_MENU') {
+      const updatedMenus = [...prev.menus];
+      const firstMenu = updatedMenus.shift();
+
+      updatedMenus.push(firstMenu);
+
       return updatedMenus;
     }
-    return prev;
+    return { ...prev, menus: updatedMenus };
   }, menus);
 
   return (

@@ -1,0 +1,113 @@
+import { Float, Html } from "@react-three/drei";
+import { useLoader, useThree } from "@react-three/fiber";
+import * as THREE from "three";
+import { Box, Text } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { useSpring, a } from "@react-spring/three";
+import { useDrag } from "@use-gesture/react";
+
+function useTextureLoader(paths) {
+  return useLoader(
+    THREE.TextureLoader,
+    paths.map((path) => `./icons/${path}`)
+  );
+}
+
+function DraggableMesh({ position, texture, onDrag }) {
+  const [spring, set] = useSpring(() => ({ position }));
+  const bind = useDrag(
+    ({ offset: [x, y] }) => {
+      set({ position: [x, y, 0] });
+      onDrag();
+    },
+    { pointerEvents: true }
+  );
+
+  return (
+    <a.mesh {...bind()} position={spring.position} scale={[0.5, 0.5, 0.5]}>
+      <planeGeometry args={[2, 2]} />
+      <meshBasicMaterial
+        side={THREE.DoubleSide}
+        map={texture}
+        transparent={true}
+        opacity={0.5}
+      />
+    </a.mesh>
+  );
+}
+
+function Logo() {
+  const textures = useTextureLoader([
+    "javascript.png",
+    "typescript.png",
+    "react.png",
+    "git.png",
+    "html.png",
+    "css.png",
+    "three.png",
+  ]);
+
+  const descriptions = [
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Git",
+    "HTML",
+    "CSS",
+    "Three.js",
+  ];
+
+  const [textureIndices, setTextureIndices] = useState({
+    prev: 0,
+    current: 1,
+    next: 2,
+    length: textures.length,
+  });
+
+  // ドラッグ終了時のロジックを追加する必要があります
+  const handleDragEnd = () => {
+    // ここにドラッグ終了時のロジックを実装します
+  };
+
+  return (
+    <>
+      {/* 中央のメッシュはそのままに、左右のメッシュをDraggableMeshコンポーネントに置き換えます */}
+      <DraggableMesh
+        position={[-1.75, 1.5, 0]}
+        texture={textures[textureIndices.prev]}
+        onDrag={handleDragEnd}
+      />
+      {/* 中央のメッシュ */}
+      <Float speed={1.5} rotationIntensity={1.5} floatIntensity={0.05}>
+        <mesh position={[0, 1.5, 0]}>
+          <planeGeometry args={[2, 2]} />
+          <meshBasicMaterial
+            side={THREE.DoubleSide}
+            map={textures[textureIndices.current]}
+            transparent={true}
+          />
+        </mesh>
+      </Float>
+      <DraggableMesh
+        position={[1.75, 1.5, 0]}
+        texture={textures[textureIndices.next]}
+        onDrag={handleDragEnd}
+      />{" "}
+      {/* HTMLコンテンツ */}
+      <Html center position={[0, -1.5, 0]}>
+        <Box p={5} w={350} color="white">
+          <Text
+            fontFamily="DotGothic16"
+            textAlign="center"
+            letterSpacing={8}
+            fontSize="1xl"
+          >
+            {descriptions[textureIndices.current]}
+          </Text>
+        </Box>
+      </Html>
+    </>
+  );
+}
+
+export default Logo;
