@@ -103,15 +103,14 @@ const App = () => {
 
   useEffect(() => {
     const handleWheelEvent = (event) => {
-     const navi =  getNextMenuItem(location)
-      
-console.log(navi)
-
+      const navi = getNextMenuItem(location);
       // updatePosition(location);
     };
-  
-    stackRef.current.addEventListener('wheel', handleWheelEvent, { passive: true });
-  
+
+    stackRef.current.addEventListener('wheel', handleWheelEvent, {
+      passive: true,
+    });
+
     return () => {
       stackRef.current.removeEventListener('wheel', handleWheelEvent);
     };
