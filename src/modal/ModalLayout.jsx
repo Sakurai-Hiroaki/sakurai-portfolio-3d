@@ -10,8 +10,8 @@ import {
   Center,
 } from '@chakra-ui/react';
 import { Route, Routes } from 'react-router-dom';
-import Profile from './modalContent/Profile';
-import Skill from './modalContent/Skill';
+import Profile from './modalContent/profile/Profile';
+import Skill from './modalContent/skill/Skill';
 import Works from './modalContent/Works';
 import Contact from './modalContent/Contact';
 

@@ -1,118 +1,119 @@
-import {
-  Box,
-  Text,
-  Button,
-  useToast,
-  Flex,
-  chakra,
-  Center,
-  SimpleGrid,
-  Image,
-  Heading,
-  Stack,
-} from '@chakra-ui/react';
+import { Box, chakra, Image, Flex } from '@chakra-ui/react';
+import SectionHeader from './SectionHeader';
+
+const WorkItem = ({ title, techStack, duration, process, comment }) => (
+  <>
+    <chakra.p fontSize="md" textTransform="uppercase" color="teal.500" mb={4}>
+      {title}
+    </chakra.p>
+    <hr />
+<Box fontSize="sm" color="gray.600">
+<chakra.p mt={2} mb={2}  fontWeight="bold">
+      技術スタック
+    </chakra.p>
+    <chakra.p mb={2} >
+      {techStack}
+    </chakra.p>
+
+    <chakra.p mb={2}  fontWeight="bold">
+      期間
+    </chakra.p>
+    <chakra.p mb={2} >
+      {duration}
+    </chakra.p>
+
+    <chakra.p mb={2}  fontWeight="bold">
+      工程
+    </chakra.p>
+
+    <chakra.p mb={2} >
+      {process}
+    </chakra.p>
+
+    <chakra.p mb={2}  fontWeight="bold">
+      コメント
+    </chakra.p>
+
+    <chakra.p
+      px={2}
+      whiteSpace="pre-line"
+      textAlign={{ base: 'left', md: 'center' }}
+    >
+      {comment}
+    </chakra.p>
+
+</Box>
+
+   
+  </>
+);
 
 const Works = () => {
   const workItems = [
     {
       id: 1,
-      title: 'Project A',
-      description: 'Description of Project A',
-      imageUrl: 'https://via.placeholder.com/150',
+      title: 'ポートフォリオサイト',
+      imageUrl: '/img/portfolio-screenshot.png',
+      techStack:
+        'React / React-Three-Fiber / Three.js / JavaScript / chakra-ui',
+      duration: '2ヶ月',
+      process: '設計、コーディング、デザイン',
+      comment: `今見ていただいているサイトです。
+      このサイトを見ていただいた方の印象に少しでも残っていただければと思い、
+      React-Three-Fiverを用いて3Dのサイトを作成しました。`,
     },
     {
       id: 2,
-      title: 'Project B',
-      description: 'Description of Project B',
-      imageUrl: 'https://via.placeholder.com/150',
+      title: '不動産サイト・アプリのフロントエンド改修',
+      imageUrl: '/img/work-photo2.jpg',
+      techStack:
+        'JavaScript / TypeScript / React / Backbone.js / PHP / Twig / SCSS',
+      duration: '2年',
+      process:
+        '設計、新機能実装、テスト・検収、ABテスト実施、サイトリニューアル、不動産DB・バックエンド部分との連携',
+      comment: `会員登録のフロントエンド部分の改修、新機能を実装しました。
+      サイト、アプリの主要な部分の実装を単独で行うことになったためプレッシャーもありましたが、
+      大きなヒヤリハットや事故も無く本番反映リリースすることができました。`,
     },
     // 追加の仕事項目をここに追加
   ];
 
   return (
     <>
-      <chakra.p
-        mt={8}
-        fontSize={{
-          base: '1xl',
-          sm: '2xl',
-        }}
-        lineHeight="8"
-        fontWeight="bold"
-        fontFamily="Silkscreen"
-        letterSpacing={12}
-        textAlign="center"
-        marginBottom={8}
-      >
-        WORKS
-      </chakra.p>
+      <SectionHeader text="WORKS" />
 
-      {/* <Flex w="full" alignItems="center" justifyContent="center"> */}
-      <Box mx="auto" rounded="lg" shadow="md" bg="white" mb={16}>
-        <Image
-          mb={4}
-          roundedTop="lg"
-          w="full"
-          h="full"
-          fit="cover"
-          src="/img/portfolio-screenshot.png"
-          alt="Article"
-        />
-
-        <Box pb={4}>
-          <chakra.p
-            fontSize="md"
-            textTransform="uppercase"
-            color="teal.500"
+      {workItems.map((item) => (
+        <Box
+          key={item.id}
+          mx="auto"
+          rounded="lg"
+          shadow="md"
+          bg="white"
+          mb={16}
+        >
+          <Image
             mb={4}
-          >
-            ポートフォリオサイト
-          </chakra.p>
-          <hr />
-          <chakra.p
-            mt={2}
-            mb={2}
-            fontSize="sm"
-            color="gray.600"
-            fontWeight={'bold'}
-          >
-            技術スタック
-          </chakra.p>
-          <chakra.p mb={2} fontSize="sm" color="gray.600">
-            React / React-Three-Fiber / Three.js / JavaScript / chakra-ui
-          </chakra.p>
+            roundedTop="lg"
+            w="full"
+            h={item.id === 1 ? '280px' : '200px'}
+            fit={{ base: 'none', md: 'cover' }}
+            src={item.imageUrl}
+            alt="Article"
+          />
 
-          <chakra.p mb={2} fontSize="sm" color="gray.600" fontWeight={'bold'}>
-            期間
-          </chakra.p>
-          <chakra.p mb={2} fontSize="sm" color="gray.600">
-            2ヶ月
-          </chakra.p>
-
-          <chakra.p mb={2} fontSize="sm" color="gray.600" fontWeight={'bold'}>
-            工程
-          </chakra.p>
-
-          <chakra.p mb={2} fontSize="sm" color="gray.600">
-            設計、コーディング、デザイン
-          </chakra.p>
-
-          <chakra.p mb={2} fontSize="sm" color="gray.600" fontWeight={'bold'}>
-            コメント
-          </chakra.p>
-
-          <chakra.p px={2} fontSize="sm" color="gray.600">
-            今見ていただいているサイトです。
-            <br />
-            このサイトを見ていただいた方の印象に少しでも残っていただければと思い、
-            <br />
-            React-Three-Fiverを用いて3Dのサイトを作成しました。
-            <br />
-          </chakra.p>
+          <Box p={4}>
+            <WorkItem
+              title={item.title}
+              description={item.description}
+              imageUrl={item.imageUrl}
+              techStack={item.techStack}
+              duration={item.duration}
+              process={item.process}
+              comment={item.comment}
+            />
+          </Box>
         </Box>
-      </Box>
-
-      {/* </Flex> */}
+      ))}
     </>
   );
 };

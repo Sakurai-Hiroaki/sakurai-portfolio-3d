@@ -20,14 +20,14 @@ const Title = ({ onOpenModal }) => {
       repeat: -1,
     });
 
-    gsap.to(scrollTextRef.current, {
-      y: 10,
-      opacity: 0.6,
-      ease: 'linear',
-      duration: 1,
-      yoyo: true,
-      repeat: -1,
-    });
+    // gsap.to(scrollTextRef.current, {
+    //   y: 10,
+    //   opacity: 0.6,
+    //   ease: 'linear',
+    //   duration: 1,
+    //   yoyo: true,
+    //   repeat: -1,
+    // });
   }, []);
 
   useEffect(() => {
