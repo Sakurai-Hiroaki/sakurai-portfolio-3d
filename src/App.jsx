@@ -64,14 +64,14 @@ const App = () => {
     if (location.pathname === '/') navigate('/profile');
   }, [location, navigate]);
 
-  useEffect(() => {
-    stackRef.current.addEventListener('wheel', handleWheelEvent, {
-      passive: true,
-    });
-    return () => {
-      stackRef.current.removeEventListener('wheel', handleWheelEvent);
-    };
-  }, [location, menus]);
+  // useEffect(() => {
+  //   stackRef.current.addEventListener('wheel', handleWheelEvent, {
+  //     passive: true,
+  //   });
+  //   return () => {
+  //     stackRef.current.removeEventListener('wheel', handleWheelEvent);
+  //   };
+  // }, [location, menus]);
 
   const handlers = useSwipeable({
     onSwipedDown: () => console.log('Swiped Down'),
