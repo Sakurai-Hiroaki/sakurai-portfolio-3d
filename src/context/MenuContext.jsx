@@ -6,14 +6,13 @@ const MenuContext = createContext();
 const MenuDispatchContext = createContext();
 
 const MenuProvider = ({ children }) => {
-
   const geometryPositions = planePositionFloat32Array;
 
   const menus = [
-    { name: 'profile', geometry: geometryPositions[0] },
-    { name: 'skill', geometry: geometryPositions[1] },
-    { name: 'works', geometry: geometryPositions[2] },
-    { name: 'contact', geometry: geometryPositions[3] },
+    { name: 'profile', geometry: geometryPositions[0], isActive: false },
+    { name: 'skill', geometry: geometryPositions[1], isActive: false },
+    { name: 'works', geometry: geometryPositions[2], isActive: false },
+    { name: 'contact', geometry: geometryPositions[3], isActive: false },
   ];
 
   const [state, dispatch] = useReducer((prev, { type }) => {

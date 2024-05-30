@@ -16,12 +16,14 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { NavLink, useLocation } from 'react-router-dom';
+import { useMenu } from './context/MenuContext';
 
 const Header = ({ updatePosition }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const location = useLocation();
   const activeColor = useColorModeValue('teal.500', 'teal.200');
   const inactiveColor = useColorModeValue('gray.500', 'gray.200');
+  const menus = useMenu();
 
   const getLinkColor = (path) =>
     location.pathname === path ? activeColor : inactiveColor;
@@ -57,15 +59,15 @@ const Header = ({ updatePosition }) => {
           alignItems="center"
           display={{ base: 'none', md: 'flex' }}
         >
-          {['profile', 'skill', 'works', 'contact'].map((item) => (
+          {menus.map((menu) => (
             <ChakraLink
               as={NavLink}
-              to={`/${item}`}
-              color={getLinkColor(`/${item}`)}
-              onClick={() => handleLinkClick(item)}
-              key={item.toUpperCase()}
+              to={`/${menu.name}`}
+              color={getLinkColor(`/${menu.name}`)}
+              onClick={() => handleLinkClick(menu.name)}
+              key={menu.name.toUpperCase()}
             >
-              {item.toUpperCase()}
+              {menu.name.toUpperCase()}
             </ChakraLink>
           ))}
         </HStack>
@@ -76,16 +78,16 @@ const Header = ({ updatePosition }) => {
             <DrawerCloseButton />
             <DrawerBody bg={'#030303'}>
               <VStack spacing={4} mt={10}>
-                {['profile', 'skill', 'works', 'contact'].map((item) => (
+                {menus.map((menu) => (
                   <ChakraLink
                     fontFamily="Silkscreen"
                     as={NavLink}
-                    to={`/${item}`}
-                    onClick={() => handleLinkClick(item)}
-                    color={getLinkColor(`/${item}`)}
-                    key={item.toUpperCase()}
+                    to={`/${menu.name}`}
+                    onClick={() => handleLinkClick(menu.name)}
+                    color={getLinkColor(`/${menu.name}`)}
+                    key={menu.name.toUpperCase()}
                   >
-                    {item.toUpperCase()}
+                    {menu.name.toUpperCase()}
                   </ChakraLink>
                 ))}
               </VStack>

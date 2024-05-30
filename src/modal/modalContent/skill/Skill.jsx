@@ -1,27 +1,6 @@
-import { Box, Flex, SimpleGrid, chakra, Image } from '@chakra-ui/react';
-
-const Feature = ({ data }) => (
-  <Box>
-    <Flex
-      mx="auto"
-      alignItems="center"
-      justifyContent="center"
-      w={16}
-      h={16}
-      mb={4}
-    >
-      <Image src={data.icon} alt={`${data.title} icon`} objectFit="cover" />
-    </Flex>
-    <chakra.h3 mb={2} fontWeight="semibold" lineHeight="shorter">
-      {data.title}
-    </chakra.h3>
-    <chakra.p fontSize="sm" color="gray.500" mb={2}>
-      実務経験: {data.workExperience}
-    </chakra.p>
-    <chakra.p fontSize="sm">{data.description}</chakra.p>
-  </Box>
-);
-
+import { Box, SimpleGrid } from '@chakra-ui/react';
+import SkillList from './SkillList';
+import SectionHeader from '../SectionHeader';
 const Skill = () => {
   const skillsData = [
     {
@@ -65,7 +44,7 @@ const Skill = () => {
     },
     {
       title: 'Three.js',
-      workExperience: '0年',
+      workExperience: '無し',
       icon: '/icons/three.svg',
       description:
         '3D表現を可能とするJavaScriptライブラリです。このサイトでも利用しています。',
@@ -78,7 +57,7 @@ const Skill = () => {
     },
     {
       title: 'next.js',
-      workExperience: '0年',
+      workExperience: '無し',
       icon: '/icons/nextdotjs.svg',
       description: 'App Routerを利用したルーティングが可能',
     },
@@ -86,18 +65,7 @@ const Skill = () => {
 
   return (
     <>
-      <chakra.p
-        mt={8}
-        fontSize={{ base: '1xl', sm: '2xl' }}
-        lineHeight="8"
-        fontWeight="bold"
-        fontFamily="Silkscreen"
-        letterSpacing={12}
-        textAlign="center"
-        mb={8}
-      >
-        SKILL
-      </chakra.p>
+      <SectionHeader text="SKILL" />
       <Box px={8} py={20} mx="auto" shadow="xl">
         <SimpleGrid
           columns={{ base: 1, sm: 2, md: 3 }}
@@ -105,7 +73,7 @@ const Skill = () => {
           spacingY={20}
         >
           {skillsData.map((skill) => (
-            <Feature key={skill.title} data={skill} />
+            <SkillList key={skill.title} data={skill} />
           ))}
         </SimpleGrid>
       </Box>

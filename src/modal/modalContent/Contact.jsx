@@ -7,6 +7,8 @@ import {
   chakra,
   Center,
 } from '@chakra-ui/react';
+import SectionHeader from './SectionHeader';
+
 const Contact = () => {
   const toast = useToast();
   const handleCopyEmail = () => {
@@ -21,22 +23,7 @@ const Contact = () => {
 
   return (
     <>
-      <chakra.p
-        mt={8}
-        fontSize={{
-          base: '1xl',
-          sm: '2xl',
-        }}
-        lineHeight="8"
-        fontWeight="bold"
-        fontFamily="Silkscreen"
-        letterSpacing={12}
-        textAlign="center"
-        marginBottom={8}
-      >
-        CONTACT
-      </chakra.p>
-
+      <SectionHeader text="CONTACT" />
       <chakra.p mt={4} mb={8} textAlign="center" fontSize="md">
         ご連絡はx(旧twitter)もしくはkaityuu_21@yahoo.co.jpまでお願いいたします。
       </chakra.p>
