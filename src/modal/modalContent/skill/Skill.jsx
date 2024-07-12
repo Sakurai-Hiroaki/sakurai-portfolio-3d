@@ -18,10 +18,10 @@ const Skill = () => {
     },
     {
       title: 'React',
-      workExperience: '0.5年',
+      workExperience: '1年',
       icon: '/icons/react.svg',
       description:
-        '実務経験は6ヶ月ほどですが、自己学習を費やしてきたためスムーズに実装可能です。',
+        '関数コンポーネントを利用した実装やReduxを用いた状態管理が可能です',
     },
     {
       title: 'HTML',
